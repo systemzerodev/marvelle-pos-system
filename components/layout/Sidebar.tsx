@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   Package,
@@ -8,60 +11,73 @@ import {
 } from "lucide-react";
 
 export default function Sidebar() {
+  const pathname = usePathname();
+
+  const menuItems = [
+    {
+      name: "Dashboard",
+      href: "/dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      name: "Products",
+      href: "/products",
+      icon: Package,
+    },
+    {
+      name: "POS",
+      href: "/pos",
+      icon: ShoppingCart,
+    },
+    {
+      name: "Transactions",
+      href: "/transactions",
+      icon: Receipt,
+    },
+    {
+      name: "Settings",
+      href: "/settings",
+      icon: Settings,
+    },
+  ];
+
   return (
-    <aside className="w-64 min-h-screen border-r bg-white">
+    <aside className="w-64 min-h-screen bg-white border-r flex flex-col">
+      {/* Logo */}
       <div className="p-6 border-b">
-        <h1 className="text-2xl font-bold text-blue-600">Marvelle POS</h1>
+        <h1 className="text-3xl font-bold text-blue-600">Marvelle POS</h1>
       </div>
 
-      <nav className="p-4">
+      {/* Menu */}
+      <nav className="flex-1 p-4">
         <ul className="space-y-2">
-          <li>
-            <Link
-              href="/dashboard"
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100">
-              <LayoutDashboard size={18} />
-              Dashboard
-            </Link>
-          </li>
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = pathname === item.href;
 
-          <li>
-            <Link
-              href="/products"
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100">
-              <Package size={18} />
-              Products
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href="/pos"
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100">
-              <ShoppingCart size={18} />
-              POS
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href="/transactions"
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100">
-              <Receipt size={18} />
-              Transactions
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              href="/settings"
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100">
-              <Settings size={18} />
-              Settings
-            </Link>
-          </li>
+            return (
+              <li key={item.name}>
+                <Link
+                  href={item.href}
+                  className={`flex items-center gap-3 rounded-lg p-3 transition-all duration-200 ${
+                    isActive
+                      ? "bg-blue-500 text-white shadow-md"
+                      : "text-gray-700 hover:bg-gray-100 hover:text-black"
+                  }`}>
+                  <Icon size={20} />
+                  <span>{item.name}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
+
+      {/* Footer */}
+      <div className="border-t p-4">
+        <p className="text-sm text-gray-500">Marvelle POS</p>
+        <p className="text-xs text-gray-400">Version 0.1.0</p>
+      </div>
     </aside>
   );
 }
