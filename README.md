@@ -71,11 +71,15 @@ In Development
 - [x] Configure Tailwind CSS
 - [x] Create Documentation
 
-### v0.2.0 — Dashboard Module
+## v0.2.0 — Dashboard Module
 
-- [ ] Dashboard Layout
-- [ ] Sidebar Navigation
-- [ ] Statistics Cards
+- [x] Dashboard Layout
+- [x] Sidebar Navigation
+- [x] Dashboard Statistics Cards
+- [x] Products Navigation
+- [x] POS Navigation
+- [x] Transactions Navigation
+- [x] Settings Navigation
 
 ### v0.3.0 — Product Module
 
