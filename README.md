@@ -50,7 +50,7 @@ Fitur yang direncanakan:
 Current Version:
 
 ```text
-v0.2.0
+v0.4.0
 ```
 
 Status:
