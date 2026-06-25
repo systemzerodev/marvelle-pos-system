@@ -74,9 +74,9 @@ export default function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="border-t p-4">
+      <div className="p-4 border-t">
         <p className="font-medium">Marvelle POS</p>
-        <p className="text-sm text-gray-500">Version 0.2.0</p>
+        <p className="text-sm text-gray-500">Version 0.4.0</p>
       </div>
     </aside>
   );

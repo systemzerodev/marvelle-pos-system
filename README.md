@@ -83,15 +83,21 @@ In Development
 
 ### v0.3.0 — Product Module
 
-- [ ] Product Management
-- [ ] Product Categories
-- [ ] Product CRUD
+- [x] Product Management
+- [x] Product Categories
+- [x] Product CRUD
+- [x] Product Search
+- [x] Product Statistics Cards
 
 ### v0.4.0 — POS Module
 
-- [ ] Cart System
-- [ ] Checkout Process
+- [x] Product Selection
+- [x] Shopping Cart
+- [x] Quantity Counter
+- [x] Auto Total Calculation
+- [x] Checkout Simulation
 - [ ] Receipt Generation
+- [ ] Payment Method
 
 ### v0.5.0 — Transactions
 
