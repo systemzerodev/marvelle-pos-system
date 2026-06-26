@@ -12,6 +12,13 @@ type CartItem = Product & {
   quantity: number;
 };
 
+type Receipt = {
+  invoice: string;
+  date: string;
+  items: CartItem[];
+  total: number;
+};
+
 export default function PosPage() {
   const products: Product[] = [
     {
@@ -38,6 +45,10 @@ export default function PosPage() {
 
   const [cart, setCart] = useState<CartItem[]>([]);
   const [search, setSearch] = useState("");
+
+  const [showReceipt, setShowReceipt] = useState(false);
+
+  const [receipt, setReceipt] = useState<Receipt | null>(null);
 
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase()),
@@ -112,15 +123,32 @@ export default function PosPage() {
       return;
     }
 
-    alert(`Transaksi berhasil\nTotal: Rp ${total.toLocaleString("id-ID")}`);
+    const invoice = `INV-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
+
+    const date = new Date().toLocaleString("id-ID");
+
+    setReceipt({
+      invoice,
+      date,
+      items: [...cart],
+      total,
+    });
+
+    setShowReceipt(true);
 
     setCart([]);
+  };
+
+  const closeReceipt = () => {
+    setShowReceipt(false);
+    setReceipt(null);
   };
 
   return (
     <div className="p-8">
       <div className="mb-8">
         <h1 className="text-5xl font-bold">POS</h1>
+
         <p className="text-gray-500 mt-2">
           Create transactions and manage sales
         </p>
@@ -157,7 +185,7 @@ export default function PosPage() {
 
         {/* Cart */}
         <div className="col-span-5 bg-white rounded-xl shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">Cart</h2>
+          <h2 className="text-xl font-semibold mb-4">Cart ({cart.length})</h2>
 
           <div className="border-b pb-4 mb-4">
             {cart.length === 0 ? (
@@ -166,7 +194,7 @@ export default function PosPage() {
               <div className="space-y-4">
                 {cart.map((item) => (
                   <div key={item.id} className="border rounded-lg p-3">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between items-start">
                       <div>
                         <p className="font-medium">{item.name}</p>
 
@@ -177,25 +205,32 @@ export default function PosPage() {
 
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="text-red-500">
+                        className="text-red-500 hover:text-red-700 text-sm">
                         Remove
                       </button>
                     </div>
 
-                    <div className="flex items-center gap-3 mt-3">
-                      <button
-                        onClick={() => decreaseQty(item.id)}
-                        className="px-3 py-1 bg-gray-200 rounded">
-                        -
-                      </button>
+                    <div className="flex items-center justify-between mt-4">
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={() => decreaseQty(item.id)}
+                          className="w-8 h-8 rounded bg-gray-200 hover:bg-gray-300">
+                          -
+                        </button>
 
-                      <span>{item.quantity}</span>
+                        <span className="font-semibold">{item.quantity}</span>
 
-                      <button
-                        onClick={() => increaseQty(item.id)}
-                        className="px-3 py-1 bg-gray-200 rounded">
-                        +
-                      </button>
+                        <button
+                          onClick={() => increaseQty(item.id)}
+                          className="w-8 h-8 rounded bg-gray-200 hover:bg-gray-300">
+                          +
+                        </button>
+                      </div>
+
+                      <p className="font-semibold">
+                        Rp{" "}
+                        {(item.price * item.quantity).toLocaleString("id-ID")}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -203,7 +238,7 @@ export default function PosPage() {
             )}
           </div>
 
-          <div className="flex justify-between text-xl font-bold mb-4">
+          <div className="flex justify-between text-2xl font-bold mb-6">
             <span>Total</span>
 
             <span>Rp {total.toLocaleString("id-ID")}</span>
@@ -212,18 +247,76 @@ export default function PosPage() {
           <div className="space-y-3">
             <button
               onClick={checkout}
-              className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition">
               Checkout
             </button>
 
             <button
               onClick={clearCart}
-              className="w-full bg-red-500 text-white py-3 rounded-lg hover:bg-red-600">
+              className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-lg transition">
               Clear Cart
             </button>
           </div>
         </div>
       </div>
+
+      {showReceipt && receipt && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl shadow-xl w-full max-w-lg p-6">
+            <div className="text-center border-b pb-4 mb-5">
+              <h2 className="text-3xl font-bold">Marvelle Cake</h2>
+
+              <p className="text-gray-500">Bakery & Cake Shop</p>
+
+              <p className="text-gray-400 text-sm mt-1">Transaction Receipt</p>
+            </div>
+
+            <div className="space-y-1 text-sm">
+              <p>
+                <strong>Invoice :</strong> {receipt.invoice}
+              </p>
+
+              <p>
+                <strong>Date :</strong> {receipt.date}
+              </p>
+            </div>
+
+            <hr className="my-5" />
+
+            <div className="space-y-3">
+              {receipt.items.map((item) => (
+                <div key={item.id} className="flex justify-between">
+                  <div>
+                    <p className="font-medium">{item.name}</p>
+
+                    <p className="text-sm text-gray-500">
+                      {item.quantity} × Rp {item.price.toLocaleString("id-ID")}
+                    </p>
+                  </div>
+
+                  <p className="font-semibold">
+                    Rp {(item.price * item.quantity).toLocaleString("id-ID")}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <hr className="my-5" />
+
+            <div className="flex justify-between text-xl font-bold">
+              <span>Total</span>
+
+              <span>Rp {receipt.total.toLocaleString("id-ID")}</span>
+            </div>
+
+            <button
+              onClick={closeReceipt}
+              className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg">
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

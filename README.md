@@ -1,167 +1,271 @@
+# <p align="center">Marvelle POS</p>
+
 <p align="center">
-  <img src="./design/banner.png" alt="Marvelle POS Banner" width="100%">
+  <img src="design/banner.png" alt="Marvelle POS Banner" width="100%">
 </p>
 
-<h1 align="center">Marvelle POS</h1>
-
 <p align="center">
-  Point of Sale System for Marvelle Cake
+Modern Point of Sale (POS) System for Bakery & Cake Shop<br>
+Built with <b>Next.js</b>, <b>TypeScript</b>, and <b>Tailwind CSS</b>.
 </p>
 
 ---
 
-## 📖 Overview
+# 📖 Overview
 
-Marvelle POS adalah aplikasi Point of Sale modern yang dibangun menggunakan Next.js dan TypeScript untuk membantu pengelolaan operasional bisnis Marvelle Cake.
+Marvelle POS adalah aplikasi Point of Sale modern yang dirancang khusus untuk membantu operasional toko roti dan bakery seperti **Marvelle Cake**.
 
-Fitur yang direncanakan:
-
-- Product Management
-- Point of Sale (POS)
-- Transaction Management
-- Inventory Tracking
-- QRIS Payment Support
-- Sales Reporting
-- Multi-Store Support (Future)
+Fokus utama project ini adalah membangun sistem POS yang cepat, sederhana, modern, dan mudah dikembangkan.
 
 ---
 
-## 🚀 Tech Stack
+# ✨ Features
 
-### Frontend
+### Current Features
 
-- Next.js
+- 📊 Dashboard
+- 📦 Product Management
+- 🛒 Point of Sale (POS)
+- 🔍 Product Search
+- ➕ Quantity Counter
+- 🧾 Receipt Generation
+- 🧹 Clear Cart
+- 🗑 Remove Item
+- 🔢 Unique Invoice Number
+
+---
+
+# 📸 Screenshots
+
+## Dashboard
+
+![Dashboard](design/screenshots/dashboard.png)
+
+---
+
+## Products
+
+![Products](design/screenshots/products.png)
+
+---
+
+## POS
+
+![POS](design/screenshots/pos.png)
+
+---
+
+## Receipt
+
+## ![Receipt](design/screenshots/receipt.png)
+
+# 🚀 Tech Stack
+
+## Frontend
+
+- Next.js 15
+- React
 - TypeScript
 - Tailwind CSS
 
-### Backend (Planned)
+---
+
+## Backend (Planned)
 
 - Next.js Server Actions
 - Prisma ORM
 
-### Database (Planned)
+---
 
-- PostgreSQL
+## Database (Planned)
+
+- SQLite (v0.5.0)
+- PostgreSQL (Future)
 
 ---
 
-## 📋 Project Status
+# 📈 Project Status
 
-Current Version:
+| Item            | Status     |
+| --------------- | ---------- |
+| Current Version | **v0.4.0** |
+| Development     | Active     |
+| Progress        | **55%**    |
 
-```text
-v0.4.0
+Progress
+
 ```
-
-Status:
-
-```text
-In Development
+███████████░░░░░░░░░░ 55%
 ```
 
 ---
 
-## 🛣️ Roadmap
+# 🗺 Roadmap
 
-### v0.1.0 — Project Initialization
+## ✅ v0.1.0 — Project Initialization
 
-- [x] Setup GitHub Repository
-- [x] Initialize Next.js Project
+- [x] Setup Git Repository
+- [x] Initialize Next.js
 - [x] Configure TypeScript
-- [x] Configure Tailwind CSS
-- [x] Create Documentation
+- [x] Configure TailwindCSS
+- [x] Initial Documentation
 
-## v0.2.0 — Dashboard Module
+---
+
+## ✅ v0.2.0 — Dashboard Module
 
 - [x] Dashboard Layout
 - [x] Sidebar Navigation
-- [x] Dashboard Statistics Cards
-- [x] Products Navigation
-- [x] POS Navigation
-- [x] Transactions Navigation
-- [x] Settings Navigation
-
-### v0.3.0 — Product Module
-
-- [x] Product Management
-- [x] Product Categories
-- [x] Product CRUD
-- [x] Product Search
-- [x] Product Statistics Cards
-
-### v0.4.0 — POS Module
-
-- [x] Product Selection
-- [x] Shopping Cart
-- [x] Quantity Counter
-- [x] Auto Total Calculation
-- [x] Checkout Simulation
-- [ ] Receipt Generation
-- [ ] Payment Method
-
-### v0.5.0 — Transactions
-
-- [ ] Transaction History
-- [ ] Sales Summary
-
-### v1.0.0 — Stable Release
-
-- [ ] Complete POS Workflow
-- [ ] QRIS Integration
-- [ ] Reporting Module
+- [x] Statistics Cards
+- [x] Navigation Menu
 
 ---
 
-## ⚙️ Development
+## ✅ v0.3.0 — Product Module
 
-Install dependencies:
+- [x] Product Management
+- [x] Product Statistics
+- [x] Product Search
+- [x] Product CRUD Layout
+
+---
+
+## 🚧 v0.4.0 — POS Module
+
+- [x] Product Selection
+- [x] Shopping Cart
+- [x] Product Search
+- [x] Quantity Counter
+- [x] Remove Item
+- [x] Clear Cart
+- [x] Auto Total Calculation
+- [x] Checkout Process
+- [x] Receipt Popup
+- [x] Unique Invoice Number
+- [ ] Print Receipt
+- [ ] Payment Method
+
+---
+
+## ⏳ v0.5.0 — Database Integration
+
+Planned
+
+- [ ] SQLite
+- [ ] Prisma ORM
+- [ ] Product Database
+- [ ] Transaction Database
+- [ ] Inventory Management
+- [ ] Persistent Data
+
+---
+
+## 🎯 v1.0.0 — Stable Release
+
+- [ ] Dashboard Analytics
+- [ ] Sales Charts
+- [ ] Reports
+- [ ] Customer Management
+- [ ] Authentication
+- [ ] QRIS Integration
+- [ ] Export PDF
+- [ ] Export Excel
+
+---
+
+# ⚙️ Installation
+
+Clone repository
+
+```bash
+git clone https://github.com/systemzerodev/marvelle-pos-system.git
+```
+
+Install dependencies
 
 ```bash
 npm install
 ```
 
-Run development server:
+Run development server
 
 ```bash
 npm run dev
 ```
 
-Open:
+Open
 
-```text
+```
 http://localhost:3000
 ```
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
-```text
+```
 Marvelle-POS-System
 │
 ├── app/
-├── public/
+├── components/
 ├── design/
-│   └── banner.png
-│
+├── public/
 ├── README.md
-├── CHANGELOG.md
 ├── LICENSE
-│
-├── package.json
-└── tsconfig.json
+└── package.json
 ```
 
 ---
 
-## 📄 License
+# 📝 Changelog
 
-MIT License
+## v0.4.0
+
+### Added
+
+- POS Module
+- Shopping Cart
+- Product Search
+- Quantity Control
+- Receipt Popup
+- Invoice Generator
+- Clear Cart
+- Remove Item
+
+### Improved
+
+- Better POS Layout
+- Improved User Experience
+- Better Receipt Design
 
 ---
 
-## 👨‍💻 Author
+# 🎯 Upcoming
 
-Systemzerodev
+Next milestone (**v0.5.0**)
 
-Built with Next.js, TypeScript, and Tailwind CSS.
+- SQLite Database
+- Prisma ORM
+- Persistent Products
+- Persistent Transactions
+- Inventory System
+
+---
+
+# 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+# 👨‍💻 Author
+
+**SystemZeroDev**
+
+Built with ❤️ using Next.js, TypeScript and Tailwind CSS.
+
+---
+
+<p align="center">
+⭐ If you like this project, don't forget to give it a star!
+</p>
